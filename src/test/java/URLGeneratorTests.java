@@ -28,5 +28,25 @@ public class URLGeneratorTests {
         ArrayList<URL> urls = URLGenerator.generate(argsMap);
 
         Assertions.assertEquals(4, urls.size());
+        Assertions.assertTrue(
+            urls.stream().anyMatch(
+                e -> e.toString().contains("fra") && e.toString().contains("1")
+            )
+        );
+        Assertions.assertTrue(
+            urls.stream().anyMatch(
+                e -> e.toString().contains("fra") && e.toString().contains("2")
+            )
+        );
+        Assertions.assertTrue(
+            urls.stream().anyMatch(
+                e -> e.toString().contains("deu") && e.toString().contains("1")
+            )
+        );
+        Assertions.assertTrue(
+            urls.stream().anyMatch(
+                e -> e.toString().contains("deu") && e.toString().contains("2")
+            )
+        );
     }
 }
