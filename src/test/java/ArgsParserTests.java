@@ -68,7 +68,7 @@ public class ArgsParserTests {
         Assertions.assertEquals(10, pages.size());
 
         for (int i = 1; i <= 10; ++i) {
-            Assertions.assertEquals((new Integer(i)).toString(), pages.get(i));
+            Assertions.assertEquals(String.valueOf(i), pages.get(i - 1));
         }
     }
 }
