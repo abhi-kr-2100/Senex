@@ -21,7 +21,7 @@ $ senex "from: deu" "to: eng" "page: [1..10]"
 Notice how Senex accepts both singular and multiple values; to extract the 2nd page each of German-English and French-English, one could run the following:
 
 ```shell
-$ senex "from: [due, fra]" "to: eng" "page: 2"
+$ senex "from: [due fra]" "to: eng" "page: 2"
 ```
 
 Language codes can be found at [Tatoeba](https://tatoeba.org/).

@@ -44,7 +44,7 @@ public class ArgsParserTests {
 
     @Test
     public void shouldParseMultipleValues() {
-        String[] args = {"args:[argA, argB]"};
+        String[] args = {"args:[argA argB]"};
         HashMap<String, ArrayList<String>> argsMap = ArgsParser.parse(args);
 
         Assertions.assertEquals(1, argsMap.size());
