@@ -1,5 +1,6 @@
 import io.abhikr2100.ConcurrentTatoebaSentenceExtractor;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -46,10 +47,11 @@ public class ConcurrentTatoebaSentenceExtractorTests {
         Mockito.mockStatic(Jsoup.class);
         Mockito.when(Jsoup.connect(mockedURL)).thenReturn(mockedConnection);
 
-        ArrayList<String> JSONs = ConcurrentTatoebaSentenceExtractor.extractAll(mockedURLs);
-        Assertions.assertEquals(1, JSONs.size());
+        ByteArrayOutputStream store = new ByteArrayOutputStream();
+        ConcurrentTatoebaSentenceExtractor tsenex = new ConcurrentTatoebaSentenceExtractor(store);
+        tsenex.extractAll(mockedURLs);
 
-        String json = JSONs.get(0);
+        String json = store.toString().trim();
         Assertions.assertEquals('{', json.charAt(0));
         Assertions.assertEquals('}', json.charAt(json.length() - 1));
         Assertions.assertTrue(json.contains(mockSentence));
