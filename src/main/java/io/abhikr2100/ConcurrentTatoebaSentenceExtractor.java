@@ -28,7 +28,7 @@ public class ConcurrentTatoebaSentenceExtractor {
             ++end;
         } while (nesting != 0);
 
-        return s.substring(start, end + 1);
+        return s.substring(start, end);
     }
 
     private static ArrayList<String> extractJSONsFromURL(URL url) throws IOException {
