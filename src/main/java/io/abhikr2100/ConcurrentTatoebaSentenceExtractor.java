@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConcurrentTatoebaSentenceExtractor {
     private final OutputStream os;
@@ -69,13 +71,15 @@ public class ConcurrentTatoebaSentenceExtractor {
     }
 
     public void extractAll(ArrayList<URL> urls) {
+        Logger logger = Logger.getLogger(ConcurrentTatoebaSentenceExtractor.class.getName());
+
         ExecutorService executor = Executors.newFixedThreadPool(this.numThreads);
 
         urls.forEach(url -> executor.execute(() -> {
             try {
                 extractJSONsFromURL(url);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                logger.log(Level.WARNING, e + ": " + url);
             }
         }));
 
