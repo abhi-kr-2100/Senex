@@ -50,6 +50,8 @@ public class ConcurrentTatoebaSentenceExtractorTests {
         Assertions.assertEquals(1, JSONs.size());
 
         String json = JSONs.get(0);
+        Assertions.assertEquals('{', json.charAt(0));
+        Assertions.assertEquals('}', json.charAt(json.length() - 1));
         Assertions.assertTrue(json.contains(mockSentence));
         Assertions.assertTrue(json.contains(mockTranslation));
     }
