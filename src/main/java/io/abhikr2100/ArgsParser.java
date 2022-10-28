@@ -1,11 +1,6 @@
 package io.abhikr2100;
 
-import javafx.util.Pair;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,7 +35,7 @@ public class ArgsParser {
         return new ArrayList<>(Arrays.asList(values));
     }
 
-    private static Pair<String, ArrayList<String>> parseArg(String arg) {
+    private static AbstractMap.SimpleImmutableEntry<String, ArrayList<String>> parseArg(String arg) {
         String[] parts = arg.split(":");
         if (parts.length != 2) {
             throw new IllegalArgumentException("parse: each argument should be of the form `key:val` or `key:[values]`");
@@ -50,13 +45,13 @@ public class ArgsParser {
         String values = parts[1].trim();
 
         ArrayList<String> valuesList = ArgsParser.extractValues(values);
-        return new Pair<>(key, valuesList);
+        return new AbstractMap.SimpleImmutableEntry<>(key, valuesList);
     }
 
     public static HashMap<String, ArrayList<String>> parse(String[] args) {
         HashMap<String, ArrayList<String>> argsMap = new HashMap<>();
         for (String arg : args) {
-            Pair<String, ArrayList<String>> kv = ArgsParser.parseArg(arg);
+            AbstractMap.SimpleImmutableEntry<String, ArrayList<String>> kv = ArgsParser.parseArg(arg);
             argsMap.put(kv.getKey(), kv.getValue());
         }
 
