@@ -63,6 +63,9 @@ public class ConcurrentTatoebaSentenceExtractor {
         ArrayList<String> sentenceTranslationPairJSONs = new ArrayList<>();
         for (Element sentenceDiv : sentenceDivs) {
             String ngInitVal = sentenceDiv.attr("ng-init");
+            if (ngInitVal.length() == 0) {  // the URL points to a "no results found" page
+                continue;   // skip this URL
+            }
             String JSON = ConcurrentTatoebaSentenceExtractor.extractJSONPart(ngInitVal);
             sentenceTranslationPairJSONs.add(JSON);
         }
